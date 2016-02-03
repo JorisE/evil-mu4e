@@ -149,10 +149,10 @@
   "The place where to end overriding Basic section.")
 
 (defvar evil-mu4e-new-region-basic
-  "Define the evil-mu4e Basic region."
-(concat (mu4e~main-action-str "\t* [J]ump to some maildir\n" 'mu4e-jump-to-maildir)
-(mu4e~main-action-str "\t* enter a [s]earch query\n" 'mu4e-search)
-(mu4e~main-action-str "\t* [c]ompose a new message\n" 'mu4e-compose-new)))
+  (concat (mu4e~main-action-str "\t* [J]ump to some maildir\n" 'mu4e-jump-to-maildir)
+          (mu4e~main-action-str "\t* enter a [s]earch query\n" 'mu4e-search)
+          (mu4e~main-action-str "\t* [c]ompose a new message\n" 'mu4e-compose-new))
+  "Define the evil-mu4e Basic region.")
 
 (defvar evil-mu4e-begin-region-misc "\n  Misc"
   "The place where to start overriding Misc section.")
@@ -161,10 +161,9 @@
   "The place where to end overriding Misc section.")
 
 (defvar evil-mu4e-new-region-misc
-  "Define the evil-mu4e Misc region."
   (concat
    (mu4e~main-action-str "\t* [f]Switch focus\n" 'mu4e-context-switch)
-   (mu4e~main-action-str "\t* [u]pdate email & database\n"
+   (mu4e~main-action-str "\t* [u]pdate email & database (Alternatively: gr)\n"
                          'mu4e-update-mail-and-index)
 
    ;; show the queue functions if `smtpmail-queue-dir' is defined
@@ -177,7 +176,7 @@
    (mu4e~main-action-str "\t* [A]bout mu4e\n" 'mu4e-about)
    (mu4e~main-action-str "\t* [?]help\n" 'mu4e-display-manual)
    (mu4e~main-action-str "\t* [q]uit\n" 'mu4e-quit))
-  )
+  "Define the evil-mu4e Misc region.")
 
 (defun evil-mu4e-replace-region (new-region start end)
   "Replace the region between START and END from the mu4e-main-view with new-region. Where START end END end are regular expressions."
