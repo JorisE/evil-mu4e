@@ -3,17 +3,28 @@ This package configures Keybindings for Mu4e that make sense for Evil users.
 
 * Installation and use
 ** Melpa
+
 The recommended method is to use MELPA via package.el (`M-x
 package-install RET evil-mu4e RET`).
 
+To setup the new bindings, add the following to init.el:
+
+#+BEGIN_SRC emacs-lisp
+(require 'evil-mu4e)
+#+END_SRC
+
 ** Manual install
+
 Evil and Mu4e are both required. After requiring those packages, the following
 will setup the new key bindings for you.
 
+#+BEGIN_SRC emacs-lisp
 (add-to-list 'load-path "/path/to/evil-mu4e.el")
 (require 'evil-mu4e)
+#+END_SRC
 
 * Key bindings
+
 The bindings that differ from normal mu4e bindings are listed below:
 ** General commands
 | Commmand        | evil-mu4e |
@@ -22,21 +33,13 @@ The bindings that differ from normal mu4e bindings are listed below:
 | Switch context  | f         |
 | Display manual  | ?         |
 
-** Commands for main-mode
-| Command        | evil-mu4e |
-|----------------+-----------|
-| Update         | u         |
-| mark unread    | u         |
-| mark read      | r         |
-| mark for trash | x         |
-| execute marks  | e         |
-
-** Commands for view-mode
-| Command          | key |
-|------------------+-----|
-| Next message     | C-j |
-| Previous message | C-k |
-| mark unread      | u   |
-| mark read        | r   |
-| mark for trash   | x   |
-| execute marks    | e   |
+** Commands for header- and view-mode
+| Command          | evil-mu4e |
+|------------------+-----------|
+| Update           | u         |
+| mark unread      | u         |
+| mark read        | r         |
+| mark for trash   | x         |
+| execute marks    | e         |
+| next message     | C-j       |
+| previous message | C-k       |

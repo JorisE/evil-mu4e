@@ -21,50 +21,7 @@
 ;; see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-
-;; This package configures Keybindings for Mu4e that make sense for Evil users.
-
-;; Installation and Use
-;; ====================
-
-;; Everything is contained in evil-mu4e.el, so you may download and load that file
-;; directly. The recommended method is to use MELPA via package.el (`M-x
-;; package-install RET evil-mu4e RET`).
-
-;; Evil and Mu4e are both required. After requiring those packages, the following
-;; will setup the new key bindings for you.
-
-;; The bindings that differ from normal mu4e are listed below:
-
-;; General commands
-;; | Commmand        | evil-mu4e |
-;; |-----------------+-----------|
-;; | Move up         | k         |
-;; | Move down       | j         |
-;; | Jump to maildir | J         |
-;; | Switch context  | f         |
-;; | Display manual  | ?         |
-;; |                 |           |
-;;
-;; Specific to:
-;; mu4e-main-mode
-;; | Command              | evil-mu4e  |
-;; |----------------------+------------|
-;; | Update               | u          |
-;; | mark unread      | u   |
-;; | mark read        | r   |
-;; | mark for trash   | x   |
-;; | execute marks    | e   |
-
-;;  mu4e-view-mode
-;; | Command          | key |
-;; |------------------+-----|
-;; | Next message     | l   |
-;; | Previous message | h   |
-;; | mark unread      | u   |
-;; | mark read        | r   |
-;; | mark for trash   | x   |
-;; | execute marks    | e   |
+;; See README.org.
 ;;; Code:
 
 (require 'evil)
@@ -96,6 +53,7 @@
 
 (defvar evil-mu4e-mode-map-bindings
   `((,evil-mu4e-state mu4e-main-mode-map "J"               mu4e~headers-jump-to-maildir)
+    (,evil-mu4e-state mu4e-main-mode-map "gm"              mu4e~headers-jump-to-maildir)
     (,evil-mu4e-state mu4e-main-mode-map "j"               next-line)
     (,evil-mu4e-state mu4e-main-mode-map "k"               previous-line)
     (,evil-mu4e-state mu4e-main-mode-map "u"               mu4e-update-mail-and-index)
@@ -107,6 +65,7 @@
 
 
     (,evil-mu4e-state mu4e-headers-mode-map "J"            mu4e~headers-jump-to-maildir)
+    (,evil-mu4e-state mu4e-headers-mode-map "gm"           mu4e~headers-jump-to-maildir)
     (,evil-mu4e-state mu4e-headers-mode-map "j"            next-line)
     (,evil-mu4e-state mu4e-headers-mode-map "k"            previous-line)
     (,evil-mu4e-state mu4e-headers-mode-map "f"            mu4e-context-switch)
@@ -117,9 +76,12 @@
     (,evil-mu4e-state mu4e-headers-mode-map "r"            mu4e-headers-mark-for-read)
     (,evil-mu4e-state mu4e-headers-mode-map "x"            mu4e-headers-mark-for-trash)
     (,evil-mu4e-state mu4e-headers-mode-map "e"            mu4e-mark-execute-all)
+    (,evil-mu4e-state mu4e-headers-mode-map "\C-j"         mu4e-headers-next)
+    (,evil-mu4e-state mu4e-headers-mode-map "\C-k"         mu4e-headers-prev)
 
 
     (,evil-mu4e-state mu4e-view-mode-map "J"               mu4e~headers-jump-to-maildir)
+    (,evil-mu4e-state mu4e-view-mode-map "gm"              mu4e~headers-jump-to-maildir)
     (,evil-mu4e-state mu4e-view-mode-map "\C-j"            mu4e-view-headers-next)
     (,evil-mu4e-state mu4e-view-mode-map "\C-k"            mu4e-view-headers-prev)
     (,evil-mu4e-state mu4e-view-mode-map "h"               mu4e-view-headers-prev)
