@@ -45,6 +45,7 @@
 
 (require 'evil)
 (require 'mu4e)
+(require 'dash)
 
 (defcustom evil-mu4e-state 'motion
   "State to use in mu4e buffers where keybindings are altered."
@@ -184,13 +185,17 @@
 ;;; Initialize evil-mu4e
 
 (defun evil-mu4e-init ()
-  "Initialize evil-mu4e."
-  (evil-mu4e-set-state)
-  (evil-mu4e-set-bindings)
-)
+  "Initialize evil-mu4e if necessary. If mu4e-main-mode is in
+evil-state-motion-modes, initialization is already done earlier."
+  (unless (-contains? evil-motion-state-modes 'mu4e-main-mode)
+    (evil-mu4e-set-state)
+    (evil-mu4e-set-bindings)))
 
-
+;; The main-mode and header-mode are the only entry point into mu4e. By adding
+;; initialization as a hook on this modes, loading is postponed to the last
+;; possible moment.
 (add-hook 'mu4e-main-mode-hook 'evil-mu4e-init)
+(add-hook 'mu4e-headers-mode-hook 'evil-mu4e-init)
 (add-hook 'mu4e-main-mode-hook 'evil-mu4e-update-main-view)
 
 (provide 'evil-mu4e)
