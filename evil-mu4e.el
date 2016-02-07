@@ -7,7 +7,7 @@
 ;; Homepage: https://github.com/JorisE/evil-mu4e
 ;; Version: 0.0.1
 
-; This file is free software; you can redistribute it and/or modify
+                                        ; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published
 ;; by the Free Software Foundation; either version 3, or (at your
 ;; option) any later version.
@@ -21,14 +21,33 @@
 ;; see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;; See README.org.
+;; evil-mu4e keybindings for Mu4e that make sense for Evil users. The following
+;; keybindings are defined:
+;;
+;; General commands:
+;; | Commmand        | evil-mu4e |
+;; |-----------------+-----------|
+;; | Jump to maildir | J         |
+;; | Switch context  | f         |
+;; | Display manual  | ?         |
+;; | Update          | u         |
+;;
+;; Commands for view and header mode:
+;; | Command          | evil-mu4e |
+;; |------------------+-----------|
+;; | mark unread      | u         |
+;; | mark read        | r         |
+;; | mark for trash   | x         |
+;; | execute marks    | e         |
+;; | next message     | C-j       |
+;; | previous message | C-k       |
 ;;; Code:
 
 (require 'evil)
 (require 'mu4e)
 
 (defcustom evil-mu4e-state 'motion
-  "State to use for al "
+  "State to use in mu4e buffers where keybindings are altered."
   :group 'mu4e
   :type  'symbol)
 
@@ -40,12 +59,12 @@
   '(mu4e-main-mode
     mu4e-headers-mode
     mu4e-view-mode)
-  "Modes that should switch from emacs state to `evil-mu4e-state'")
+  "Modes that should switch from Emacs state to `evil-mu4e-state'.")
 
 (defun evil-mu4e-set-state ()
-    "Associate all relevant modes with the evil-mu4e-state"
-(dolist (mode evil-mu4e-emacs-to-evil-mu4e-state-modes)
-  (evil-set-initial-state mode evil-mu4e-state)))
+  "Associate all relevant modes with the evil-mu4e-state."
+  (dolist (mode evil-mu4e-emacs-to-evil-mu4e-state-modes)
+    (evil-set-initial-state mode evil-mu4e-state)))
 
 
 
@@ -71,7 +90,7 @@
     (,evil-mu4e-state mu4e-headers-mode-map "f"            mu4e-context-switch)
     (,evil-mu4e-state mu4e-headers-mode-map "?"            mu4e-display-manual)
     (,evil-mu4e-state mu4e-headers-mode-map ,(kbd "RET")   mu4e-headers-view-message)
-    (,evil-mu4e-state mu4e-headers-mode-map "n"            mu4e-headers-search-narrow)
+    (,evil-mu4e-state mu4e-headers-mode-map "/"            mu4e-headers-search-narrow)
     (,evil-mu4e-state mu4e-headers-mode-map "u"            mu4e-headers-mark-for-unread)
     (,evil-mu4e-state mu4e-headers-mode-map "r"            mu4e-headers-mark-for-read)
     (,evil-mu4e-state mu4e-headers-mode-map "x"            mu4e-headers-mark-for-trash)
@@ -84,20 +103,19 @@
     (,evil-mu4e-state mu4e-view-mode-map "gm"              mu4e~headers-jump-to-maildir)
     (,evil-mu4e-state mu4e-view-mode-map "\C-j"            mu4e-view-headers-next)
     (,evil-mu4e-state mu4e-view-mode-map "\C-k"            mu4e-view-headers-prev)
-    (,evil-mu4e-state mu4e-view-mode-map "h"               mu4e-view-headers-prev)
     (,evil-mu4e-state mu4e-view-mode-map "?"               mu4e-display-manual)
     (,evil-mu4e-state mu4e-view-mode-map "u"               mu4e-view-mark-for-unread)
     (,evil-mu4e-state mu4e-view-mode-map "r"               mu4e-view-mark-for-read)
     (,evil-mu4e-state mu4e-view-mode-map "x"               mu4e-view-mark-for-trash)
     (,evil-mu4e-state mu4e-view-mode-map "e"               mu4e-mark-execute-all)
-    (,evil-mu4e-state mu4e-view-mode-map "\C-u"              evil-scroll-up))
+    (,evil-mu4e-state mu4e-view-mode-map "\C-u"            evil-scroll-up))
   "All evil-mu4e bindings.")
 
 (defun evil-mu4e-set-bindings ()
-    "Set the bindings."
-(dolist (binding evil-mu4e-mode-map-bindings)
+  "Set the bindings."
+  (dolist (binding evil-mu4e-mode-map-bindings)
     (evil-define-key
-     (nth 0 binding) (nth 1 binding) (nth 2 binding) (nth 3 binding))))
+      (nth 0 binding) (nth 1 binding) (nth 2 binding) (nth 3 binding))))
 
 
 ;;; Update mu4e-main-view
@@ -141,7 +159,7 @@
   "Define the evil-mu4e Misc region.")
 
 (defun evil-mu4e-replace-region (new-region start end)
-  "Replace the region between START and END from the mu4e-main-view with new-region. Where START end END end are regular expressions."
+  "Insert NEW-REGION instead of the region between START and END where START end END end are regular expressions."
   ;; move to start of region
   (goto-char (point-min))
   (re-search-forward start)
@@ -156,24 +174,24 @@
 
 
 (defun evil-mu4e-update-main-view ()
+  "Evil-mu4e-update-main-view updates both the 'Basic' and the 'Misc' region with texts that reflect the new keybindings."
   (evil-mu4e-replace-region evil-mu4e-new-region-basic evil-mu4e-begin-region-basic evil-mu4e-end-region-basic)
   (evil-mu4e-replace-region evil-mu4e-new-region-misc evil-mu4e-begin-region-misc evil-mu4e-end-region-misc)
-)
+  )
 
 
 
 ;;; Initialize evil-mu4e
 
-;;;###autoload
 (defun evil-mu4e-init ()
   "Initialize evil-mu4e."
   (evil-mu4e-set-state)
   (evil-mu4e-set-bindings)
-
-  (add-hook 'mu4e-main-mode-hook 'evil-mu4e-update-main-view)
 )
 
-(evil-mu4e-init)
+
+(add-hook 'mu4e-main-mode-hook 'evil-mu4e-init)
+(add-hook 'mu4e-main-mode-hook 'evil-mu4e-update-main-view)
 
 (provide 'evil-mu4e)
 ;;; evil-mu4e.el ends here
