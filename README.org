@@ -30,16 +30,10 @@ The bindings that differ from normal mu4e bindings are listed below:
 | Commmand        | evil-mu4e |
 |-----------------+-----------|
 | Jump to maildir | J         |
-| Switch context  | f         |
-| Display manual  | ?         |
+| Update          | u         |
 
 ** Commands for header- and view-mode
 | Command          | evil-mu4e |
 |------------------+-----------|
-| Update           | u         |
-| mark unread      | u         |
-| mark read        | r         |
-| mark for trash   | x         |
-| execute marks    | e         |
 | next message     | C-j       |
 | previous message | C-k       |

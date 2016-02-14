@@ -28,17 +28,11 @@
 ;; | Commmand        | evil-mu4e |
 ;; |-----------------+-----------|
 ;; | Jump to maildir | J         |
-;; | Switch context  | f         |
-;; | Display manual  | ?         |
 ;; | Update          | u         |
 ;;
 ;; Commands for view and header mode:
 ;; | Command          | evil-mu4e |
 ;; |------------------+-----------|
-;; | mark unread      | u         |
-;; | mark read        | r         |
-;; | mark for trash   | x         |
-;; | execute marks    | e         |
 ;; | next message     | C-j       |
 ;; | previous message | C-k       |
 ;;; Code:
@@ -136,7 +130,7 @@
 
 (defvar evil-mu4e-new-region-misc
   (concat
-   (mu4e~main-action-str "\t* [f]Switch focus\n" 'mu4e-context-switch)
+   (mu4e~main-action-str "\t* [;]Switch focus\n" 'mu4e-context-switch)
    (mu4e~main-action-str "\t* [u]pdate email & database (Alternatively: gr)\n"
                          'mu4e-update-mail-and-index)
 
@@ -148,7 +142,7 @@
 
    (mu4e~main-action-str "\t* [N]ews\n" 'mu4e-news)
    (mu4e~main-action-str "\t* [A]bout mu4e\n" 'mu4e-about)
-   (mu4e~main-action-str "\t* [?]help\n" 'mu4e-display-manual)
+   (mu4e~main-action-str "\t* [h]elp\n" 'mu4e-display-manual)
    (mu4e~main-action-str "\t* [q]uit\n" 'mu4e-quit))
   "Define the evil-mu4e Misc region.")
 
