@@ -4,7 +4,7 @@
 
 ;; Author: Joris Engbers <info@jorisengbers.nl>
 ;; Homepage: https://github.com/JorisE/evil-mu4e
-;; Version: 0.0.1
+;; Version: 0.0.2
 ;; Package-Requires: ((emacs "24.4")(dash "2.12.0") (evil "1.2.10"))
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -53,7 +53,8 @@
 (defvar evil-mu4e-emacs-to-evil-mu4e-state-modes
   '(mu4e-main-mode
     mu4e-headers-mode
-    mu4e-view-mode)
+    mu4e-view-mode
+    mu4e-org-mode)
   "Modes that should switch from Emacs state to `evil-mu4e-state'.")
 
 (defun evil-mu4e-set-state ()
@@ -75,6 +76,7 @@
     (,evil-mu4e-state mu4e-main-mode-map "b"               mu4e-headers-search-bookmark)
     (,evil-mu4e-state mu4e-main-mode-map "N"               mu4e-news)
     (,evil-mu4e-state mu4e-main-mode-map ";"               mu4e-context-switch)
+    (,evil-mu4e-state mu4e-main-mode-map "H"               mu4e-display-manual)
 
 
     (,evil-mu4e-state mu4e-headers-mode-map "J"            mu4e~headers-jump-to-maildir)
@@ -119,7 +121,7 @@
 (defvar evil-mu4e-new-region-basic
   (concat (mu4e~main-action-str "\t* [J]ump to some maildir\n" 'mu4e-jump-to-maildir)
           (mu4e~main-action-str "\t* enter a [s]earch query\n" 'mu4e-search)
-          (mu4e~main-action-str "\t* [c]ompose a new message\n" 'mu4e-compose-new))
+          (mu4e~main-action-str "\t* [C]ompose a new message\n" 'mu4e-compose-new))
   "Define the evil-mu4e Basic region.")
 
 (defvar evil-mu4e-begin-region-misc "\n  Misc"
@@ -142,7 +144,7 @@
 
    (mu4e~main-action-str "\t* [N]ews\n" 'mu4e-news)
    (mu4e~main-action-str "\t* [A]bout mu4e\n" 'mu4e-about)
-   (mu4e~main-action-str "\t* [h]elp\n" 'mu4e-display-manual)
+   (mu4e~main-action-str "\t* [H]elp\n" 'mu4e-display-manual)
    (mu4e~main-action-str "\t* [q]uit\n" 'mu4e-quit))
   "Define the evil-mu4e Misc region.")
 
