@@ -33,7 +33,8 @@ The bindings that differ from normal mu4e bindings are listed below:
 | Update          | u         |
 
 ** Commands for header- and view-mode
-| Command          | evil-mu4e |
-|------------------+-----------|
-| next message     | C-j       |
-| previous message | C-k       |
+| Command                         | evil-mu4e |
+|---------------------------------+-----------|
+| next message                    | C-j       |
+| previous message                | C-k       |
+| Mark the current thread as read | T         |
