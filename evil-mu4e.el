@@ -4,7 +4,7 @@
 
 ;; Author: Joris Engbers <info@jorisengbers.nl>
 ;; Homepage: https://github.com/JorisE/evil-mu4e
-;; Version: 0.0.3
+;; Version: 0.0.4
 ;; Package-Requires: ((emacs "24.4")(dash "2.12.0") (evil "1.2.10"))
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -69,7 +69,6 @@
 
 (defvar evil-mu4e-mode-map-bindings
   `((,evil-mu4e-state mu4e-main-mode-map "J"               mu4e~headers-jump-to-maildir)
-    (,evil-mu4e-state mu4e-main-mode-map "gm"              mu4e~headers-jump-to-maildir)
     (,evil-mu4e-state mu4e-main-mode-map "j"               next-line)
     (,evil-mu4e-state mu4e-main-mode-map "k"               previous-line)
     (,evil-mu4e-state mu4e-main-mode-map "u"               mu4e-update-mail-and-index)
@@ -79,9 +78,7 @@
     (,evil-mu4e-state mu4e-main-mode-map ";"               mu4e-context-switch)
     (,evil-mu4e-state mu4e-main-mode-map "H"               mu4e-display-manual)
 
-
     (,evil-mu4e-state mu4e-headers-mode-map "J"            mu4e~headers-jump-to-maildir)
-    (,evil-mu4e-state mu4e-headers-mode-map "gm"           mu4e~headers-jump-to-maildir)
     (,evil-mu4e-state mu4e-headers-mode-map "j"            next-line)
     (,evil-mu4e-state mu4e-headers-mode-map "k"            previous-line)
     (,evil-mu4e-state mu4e-headers-mode-map ";"            mu4e-context-switch)
@@ -95,13 +92,17 @@
                                                           (interactive)
                                                           (mu4e-headers-mark-thread nil '(read))))
 
-
+    (,evil-mu4e-state mu4e-view-mode-map "h"               mu4e-view-toggle-html)
+    (,evil-mu4e-state mu4e-view-mode-map "e"               mu4e-view-save-attachment)
+    (,evil-mu4e-state mu4e-view-mode-map "o"               mu4e-view-open-attachment)
+    (,evil-mu4e-state mu4e-view-mode-map "A"               mu4e-view-attachment-action)
     (,evil-mu4e-state mu4e-view-mode-map "J"               mu4e~headers-jump-to-maildir)
-    (,evil-mu4e-state mu4e-view-mode-map "gm"              mu4e~headers-jump-to-maildir)
     (,evil-mu4e-state mu4e-view-mode-map "\C-j"            mu4e-view-headers-next)
     (,evil-mu4e-state mu4e-view-mode-map "\C-k"            mu4e-view-headers-prev)
     (,evil-mu4e-state mu4e-view-mode-map "?"               mu4e-view-mark-for-unread)
     (,evil-mu4e-state mu4e-view-mode-map "!"               mu4e-view-mark-for-read)
+    (,evil-mu4e-state mu4e-view-mode-map "R"               mu4e-compose-reply)
+    (,evil-mu4e-state mu4e-view-mode-map "F"               mu4e-compose-forward)
     (,evil-mu4e-state mu4e-view-mode-map "\C-u"            evil-scroll-up)
     (,evil-mu4e-state mu4e-view-mode-map "T"               (lambda ()
                                                            (interactive)
