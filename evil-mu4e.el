@@ -92,7 +92,7 @@
                                                           (interactive)
                                                           (mu4e-headers-mark-thread nil '(read))))
 
-    (,evil-mu4e-state mu4e-view-mode-map "h"               mu4e-view-toggle-html)
+    (,evil-mu4e-state mu4e-view-mode-map "H"               mu4e-view-toggle-html)
     (,evil-mu4e-state mu4e-view-mode-map "e"               mu4e-view-save-attachment)
     (,evil-mu4e-state mu4e-view-mode-map "o"               mu4e-view-open-attachment)
     (,evil-mu4e-state mu4e-view-mode-map "A"               mu4e-view-attachment-action)
