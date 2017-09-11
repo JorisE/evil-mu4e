@@ -4,7 +4,7 @@
 
 ;; Author: Joris Engbers <info@jorisengbers.nl>
 ;; Homepage: https://github.com/JorisE/evil-mu4e
-;; Version: 0.0.4
+;; Version: 0.0.5
 ;; Package-Requires: ((emacs "24.4")(dash "2.12.0") (evil "1.2.10"))
 
 ;; This file is free software; you can redistribute it and/or modify
