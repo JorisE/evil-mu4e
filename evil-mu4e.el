@@ -81,6 +81,7 @@
     (,evil-mu4e-state mu4e-headers-mode-map "J"            mu4e~headers-jump-to-maildir)
     (,evil-mu4e-state mu4e-headers-mode-map "j"            next-line)
     (,evil-mu4e-state mu4e-headers-mode-map "k"            previous-line)
+    (,evil-mu4e-state mu4e-headers-mode-map "b"            mu4e-headers-search-bookmark)
     (,evil-mu4e-state mu4e-headers-mode-map ";"            mu4e-context-switch)
     (,evil-mu4e-state mu4e-headers-mode-map ,(kbd "RET")   mu4e-headers-view-message)
     (,evil-mu4e-state mu4e-headers-mode-map "/"            mu4e-headers-search-narrow)
