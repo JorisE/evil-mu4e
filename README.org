@@ -1,13 +1,13 @@
 * evil-mu4e.el
-This package configures Keybindings for Mu4e that make sense for Evil users.
+This package configures keybindings for mu4e that make sense for Evil users.
 
 * Installation and use
-** Melpa
+** MELPA
 
-The recommended method is to use MELPA via package.el (`M-x
-package-install RET evil-mu4e RET`).
+The recommended method is to use MELPA via package.el (~M-x
+package-install RET evil-mu4e RET~).
 
-To setup the new bindings, add the following to init.el:
+To setup the new bindings, add the following the Emacs initialization file:
 
 #+BEGIN_SRC emacs-lisp
 (require 'evil-mu4e)
@@ -15,7 +15,7 @@ To setup the new bindings, add the following to init.el:
 
 ** Manual install
 
-Evil and Mu4e are both required. After requiring those packages, the following
+Evil and mu4e are both required.  After requiring those packages, the following
 will setup the new key bindings for you.
 
 #+BEGIN_SRC emacs-lisp
@@ -23,7 +23,7 @@ will setup the new key bindings for you.
 (require 'evil-mu4e)
 #+END_SRC
 
-* Key bindings
+* Keybindings
 
 The bindings that differ from normal mu4e bindings are listed below:
 ** General commands
@@ -35,6 +35,6 @@ The bindings that differ from normal mu4e bindings are listed below:
 ** Commands for header- and view-mode
 | Command                         | evil-mu4e |
 |---------------------------------+-----------|
-| next message                    | C-j       |
-| previous message                | C-k       |
+| Next message                    | C-j       |
+| Previous message                | C-k       |
 | Mark the current thread as read | T         |
