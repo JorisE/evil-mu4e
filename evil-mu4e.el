@@ -5,7 +5,7 @@
 ;; Author: Joris Engbers <info@jorisengbers.nl>
 ;; Homepage: https://github.com/JorisE/evil-mu4e
 ;; Version: 0.0.8
-;; Package-Requires: ((emacs "24.4")(dash "2.12.0") (evil "1.2.10"))
+;; Package-Requires: ((emacs "24.4") (evil "1.2.10"))
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published
@@ -21,7 +21,7 @@
 ;; see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;; evil-mu4e keybindings for Mu4e that make sense for Evil users. The following
+;; evil-mu4e keybindings for mu4e that make sense for Evil users.  The following
 ;; keybindings are defined:
 ;;
 ;; General commands:
@@ -33,23 +33,22 @@
 ;; Commands for view and header mode:
 ;; | Command                         | evil-mu4e |
 ;; |---------------------------------+-----------|
-;; | next message                    | C-j       |
-;; | previous message                | C-k       |
+;; | Next message                    | C-j       |
+;; | Previous message                | C-k       |
 ;; | Mark the current thread as read | T         |
 ;;; Code:
 
 (require 'evil)
 (require 'mu4e)
-(require 'dash)
 
-(defcustom evil-mu4e-state 'motion
+(defcustom evil-mu4e-state 'normal
   "State to use in mu4e buffers where keybindings are altered."
   :group 'mu4e
   :type  'symbol)
 
 
 ;;; By default all mu4e modes except for mu4e-compose-mode will start in
-;;; evil-emacs-state. This section makes all modes start in evil-motion-state.
+;;; evil-emacs-state. This section makes all modes start in `evil-mu4e-state'.
 
 (defvar evil-mu4e-emacs-to-evil-mu4e-state-modes
   '(mu4e-main-mode
@@ -121,7 +120,7 @@
 
 
 ;;; Update mu4e-main-view
-;;; To avoid confusing the main-view is updated to show the keys that are in use
+;;; To avoid confusion the main-view is updated to show the keys that are in use
 ;;; for evil-mu4e.
 
 (defvar evil-mu4e-begin-region-basic "\n  Basics"
@@ -161,7 +160,8 @@
   "Define the evil-mu4e Misc region.")
 
 (defun evil-mu4e-replace-region (new-region start end)
-  "Insert NEW-REGION instead of the region between START and END where START end END end are regular expressions."
+  "Replace region between START and END with NEW-REGION.
+START end END end are regular expressions."
   ;; move to start of region
   (goto-char (point-min))
   (re-search-forward start)
@@ -176,18 +176,21 @@
 
 
 (defun evil-mu4e-update-main-view ()
-  "Evil-mu4e-update-main-view updates both the 'Basic' and the 'Misc' region with texts that reflect the new keybindings."
-  (evil-mu4e-replace-region evil-mu4e-new-region-basic evil-mu4e-begin-region-basic evil-mu4e-end-region-basic)
-  (evil-mu4e-replace-region evil-mu4e-new-region-misc evil-mu4e-begin-region-misc evil-mu4e-end-region-misc)
-  )
+  "Update 'Basic' and 'Misc' regions to reflect the new
+keybindings."
+  (evil-mu4e-replace-region evil-mu4e-new-region-basic
+                            evil-mu4e-begin-region-basic evil-mu4e-end-region-basic)
+  (evil-mu4e-replace-region evil-mu4e-new-region-misc
+                            evil-mu4e-begin-region-misc evil-mu4e-end-region-misc))
 
 
 
 ;;; Initialize evil-mu4e
 
 (defun evil-mu4e-init ()
-  "Initialize evil-mu4e if necessary. If mu4e-main-mode is in
-evil-state-motion-modes, initialization is already done earlier."
+  "Initialize evil-mu4e if necessary.
+If mu4e-main-mode is in evil-state-motion-modes, initialization
+is already done earlier."
     (evil-mu4e-set-state)
     (evil-mu4e-set-bindings)
     (add-hook 'mu4e-main-mode-hook 'evil-mu4e-update-main-view))
