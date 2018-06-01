@@ -60,7 +60,8 @@
 (defun evil-mu4e-set-state ()
   "Associate all relevant modes with the evil-mu4e-state."
   (dolist (mode evil-mu4e-emacs-to-evil-mu4e-state-modes)
-    (evil-set-initial-state mode evil-mu4e-state)))
+    (evil-set-initial-state mode evil-mu4e-state))
+  (evil-set-initial-state 'mu4e-compose-mode 'insert))
 
 
 
