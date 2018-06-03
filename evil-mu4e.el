@@ -184,14 +184,22 @@
                                                            (interactive)
                                                            (mu4e-headers-mark-thread nil '(read)))))
   ;; TODO: Add mu4e-headers-search-bookmark?
-  ;; TODO: Bind "yu" to "save urls".
   "All evil-mu4e bindings.")
 
 (defun evil-mu4e-set-bindings ()
   "Set the bindings."
   (dolist (binding evil-mu4e-mode-map-bindings)
     (evil-define-key
-      (nth 0 binding) (nth 1 binding) (nth 2 binding) (nth 3 binding))))
+      (nth 0 binding) (nth 1 binding) (nth 2 binding) (nth 3 binding)))
+  (evil-define-key 'operator mu4e-view-mode-map
+    "u" '(menu-item
+          ""
+          nil
+          :filter (lambda (&optional _)
+                    (when (memq evil-this-operator
+                                '(evil-yank evil-cp-yank evil-sp-yank lispyville-yank))
+                      (setq evil-inhibit-operator t)
+                      #'mu4e-view-save-url)))))
 
 
 ;;; Update mu4e-main-view
