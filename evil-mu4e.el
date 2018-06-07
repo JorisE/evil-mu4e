@@ -1,4 +1,4 @@
-;;; evil-mu4e.el --- evil-based key bindings for mu4e
+;;; evil-mu4e.el --- evil-based key bindings for mu4e -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2015-2018 Joris Engbers
 ;; Copyright (C) 2018 Pierre Neidhardt <ambrevar@gmail.com>
@@ -68,6 +68,7 @@
 
 ;;; Define bindings
 
+;; TODO: Inhibit insert-state functions as per Evil Collection.
 (defvar evil-mu4e-mode-map-bindings
   `((,evil-mu4e-state mu4e-main-mode-map "J"               mu4e~headers-jump-to-maildir)
     (,evil-mu4e-state mu4e-main-mode-map "j"               next-line)
@@ -189,8 +190,11 @@
 
 (defun evil-mu4e-set-bindings ()
   "Set the bindings."
+  ;; WARNING: With lexical binding, lambdas from `mapc' and `dolist' become
+  ;; closures in which we must use `evil-define-key*' instead of
+  ;; `evil-define-key'.
   (dolist (binding evil-mu4e-mode-map-bindings)
-    (evil-define-key
+    (evil-define-key*
       (nth 0 binding) (nth 1 binding) (nth 2 binding) (nth 3 binding)))
   (evil-define-key 'operator mu4e-view-mode-map
     "u" '(menu-item
