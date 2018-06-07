@@ -185,7 +185,7 @@
     (,evil-mu4e-state mu4e-view-mode-map "\C-u"            evil-scroll-up)
     (,evil-mu4e-state mu4e-view-mode-map "zr"              mu4e-headers-toggle-include-related)
     (,evil-mu4e-state mu4e-view-mode-map "zt"              mu4e-headers-toggle-threading)
-    (,evil-mu4e-state mu4e-view-mode-map "zh"              mu4e-view-toggle-hide-cited)
+    (,evil-mu4e-state mu4e-view-mode-map "za"              mu4e-view-toggle-hide-cited)
     (,evil-mu4e-state mu4e-view-mode-map "gl"              mu4e-show-log)
     (,evil-mu4e-state mu4e-view-mode-map "s"               mu4e-view-search-edit)
     (,evil-mu4e-state mu4e-view-mode-map "|"               mu4e-view-pipe)
