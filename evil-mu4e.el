@@ -144,9 +144,10 @@
     (,evil-mu4e-state mu4e-view-mode-map "gX"              mu4e-view-fetch-url)
     (,evil-mu4e-state mu4e-view-mode-map "C"               mu4e-compose-new)
     (,evil-mu4e-state mu4e-view-mode-map "H"               mu4e-view-toggle-html)
-    (,evil-mu4e-state mu4e-view-mode-map "e"               mu4e-view-save-attachment) ; TODO: Bind mu4e-view-save-attachment-multi?
     (,evil-mu4e-state mu4e-view-mode-map "E"               mu4e-compose-edit)
     (,evil-mu4e-state mu4e-view-mode-map "F"               mu4e-compose-forward)
+    (,evil-mu4e-state mu4e-view-mode-map "p"               mu4e-view-save-attachment)
+    (,evil-mu4e-state mu4e-view-mode-map "P"               mu4e-view-save-attachment-multi) ; Since mu4e 1.0, -multi is same as normal.
     (,evil-mu4e-state mu4e-view-mode-map "O"               mu4e-headers-change-sorting)
     (,evil-mu4e-state mu4e-view-mode-map "o"               mu4e-view-open-attachment)
     (,evil-mu4e-state mu4e-view-mode-map "A"               mu4e-view-attachment-action)
