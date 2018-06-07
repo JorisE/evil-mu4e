@@ -1,6 +1,7 @@
 ;;; evil-mu4e.el --- evil-based key bindings for mu4e
 
-;; Copyright (C) 2015 Joris Engbers
+;; Copyright (C) 2015-2018 Joris Engbers
+;; Copyright (C) 2018 Pierre Neidhardt <ambrevar@gmail.com>
 
 ;; Author: Joris Engbers <info@jorisengbers.nl>
 ;; Homepage: https://github.com/JorisE/evil-mu4e
