@@ -53,6 +53,7 @@ The bindings that differ from normal mu4e bindings are listed below:
 | Show log                        | gl        |             |
 | Select other view               | gv        |             |
 | Save attachement(s)             | p         | P           |
+| Save url                        | yu        |             |
 | Go to url                       | gx        |             |
 | Fetch url                       | gX        |             |
 
