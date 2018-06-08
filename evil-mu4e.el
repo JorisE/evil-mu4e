@@ -26,40 +26,17 @@
 ;; keybindings are defined:
 ;;
 ;; General commands:
-;; | Commmand                 | evil-mu4e | Alternative |
-;; |--------------------------+-----------+-------------|
-;; | Jump to maildir          | J         |             |
-;; | Update                   | u         |             |
-;; | Compose message          | cc        | C           |
-;; | Kill update mail process | x         |             |
+;; | Commmand        | evil-mu4e |
+;; |-----------------+-----------|
+;; | Jump to maildir | J         |
+;; | Update          | u         |
 ;;
-;; Commands for header-mode and view-mode:
-;; | Command                         | evil-mu4e | Alternative |
-;; |---------------------------------+-----------+-------------|
-;; | Next message                    | C-j       |             |
-;; | Previous message                | C-k       |             |
-;; | Mark the current thread as read | T         |             |
-;; | Compose message                 | cc        | C           |
-;; | Compose edit**                  | ce        | E           |
-;; | Compose forward**               | cf        | F           |
-;; | Compose reply                   | cr        | R           |
-;; | Change sorting***               | o         | O           |
-;; | Rerun search                    | gr        |             |
-;; | Toggle include related          | zr        |             |
-;; | Toggle threading                | zt        |             |
-;; | Toggle hide cited               | za        |             |
-;; | Skip duplicates                 | zd        |             |
-;; | Show log                        | gl        |             |
-;; | Select other view               | gv        |             |
-;; | Save attachement(s)             | p         | P           |
-;; | Save url                        | yu        |             |
-;; | Go to url                       | gx        |             |
-;; | Fetch url                       | gX        |             |
-;;
-;; - * denotes only in header-mode
-;; - ** denotes Alternative only in header-mode
-;; - *** denotes Alternative only in view-mode
-;;
+;; Commands for view and header mode:
+;; | Command                         | evil-mu4e |
+;; |---------------------------------+-----------|
+;; | Next message                    | C-j       |
+;; | Previous message                | C-k       |
+;; | Mark the current thread as read | T         |
 ;;; Code:
 
 (require 'evil)
@@ -159,8 +136,8 @@
     (,evil-mu4e-state mu4e-headers-mode-map "gl"           mu4e-show-log)
     (,evil-mu4e-state mu4e-headers-mode-map "gv"           mu4e-select-other-view)
     (,evil-mu4e-state mu4e-headers-mode-map "T"           (lambda ()
-							  (interactive)
-							  (mu4e-headers-mark-thread nil '(read))))
+                                                          (interactive)
+                                                          (mu4e-headers-mark-thread nil '(read))))
 
     ;; (,evil-mu4e-state mu4e-compose-mode-map "gg" mu4e-compose-goto-top) ; TODO: Make this work.
 
@@ -215,8 +192,8 @@
     (,evil-mu4e-state mu4e-view-mode-map ,(kbd "C--")      mu4e-headers-split-view-shrink)
     (,evil-mu4e-state mu4e-view-mode-map ,(kbd "C-+")      mu4e-headers-split-view-grow)
     (,evil-mu4e-state mu4e-view-mode-map "T"               (lambda ()
-							   (interactive)
-							   (mu4e-headers-mark-thread nil '(read)))))
+                                                           (interactive)
+                                                           (mu4e-headers-mark-thread nil '(read)))))
   ;; TODO: Add mu4e-headers-search-bookmark?
   "All evil-mu4e bindings.")
 
@@ -230,13 +207,13 @@
       (nth 0 binding) (nth 1 binding) (nth 2 binding) (nth 3 binding)))
   (evil-define-key 'operator mu4e-view-mode-map
     "u" '(menu-item
-	  ""
-	  nil
-	  :filter (lambda (&optional _)
-		    (when (memq evil-this-operator
-				'(evil-yank evil-cp-yank evil-sp-yank lispyville-yank))
-		      (setq evil-inhibit-operator t)
-		      #'mu4e-view-save-url)))))
+          ""
+          nil
+          :filter (lambda (&optional _)
+                    (when (memq evil-this-operator
+                                '(evil-yank evil-cp-yank evil-sp-yank lispyville-yank))
+                      (setq evil-inhibit-operator t)
+                      #'mu4e-view-save-url)))))
 
 
 ;;; Update mu4e-main-view
@@ -251,8 +228,8 @@
 
 (defvar evil-mu4e-new-region-basic
   (concat (mu4e~main-action-str "\t* [J]ump to some maildir\n" 'mu4e-jump-to-maildir)
-	  (mu4e~main-action-str "\t* enter a [s]earch query\n" 'mu4e-search)
-	  (mu4e~main-action-str "\t* [C]ompose a new message\n" 'mu4e-compose-new))
+          (mu4e~main-action-str "\t* enter a [s]earch query\n" 'mu4e-search)
+          (mu4e~main-action-str "\t* [C]ompose a new message\n" 'mu4e-compose-new))
   "Define the evil-mu4e Basic region.")
 
 (defvar evil-mu4e-begin-region-misc "\n  Misc"
@@ -265,7 +242,7 @@
   (concat
    (mu4e~main-action-str "\t* [;]Switch focus\n" 'mu4e-context-switch)
    (mu4e~main-action-str "\t* [u]pdate email & database (Alternatively: gr)\n"
-			 'mu4e-update-mail-and-index)
+                         'mu4e-update-mail-and-index)
 
    ;; show the queue functions if `smtpmail-queue-dir' is defined
    (if (file-directory-p smtpmail-queue-dir)
@@ -291,7 +268,7 @@ START end END end are regular expressions."
   (insert new-region)
   ;; Delete text until end of region.
   (let ((start-point (point))
-	(end-point (re-search-forward end)))
+        (end-point (re-search-forward end)))
     (delete-region start-point end-point)))
 
 
@@ -299,9 +276,9 @@ START end END end are regular expressions."
   "Update 'Basic' and 'Misc' regions to reflect the new
 keybindings."
   (evil-mu4e-replace-region evil-mu4e-new-region-basic
-			    evil-mu4e-begin-region-basic evil-mu4e-end-region-basic)
+                            evil-mu4e-begin-region-basic evil-mu4e-end-region-basic)
   (evil-mu4e-replace-region evil-mu4e-new-region-misc
-			    evil-mu4e-begin-region-misc evil-mu4e-end-region-misc))
+                            evil-mu4e-begin-region-misc evil-mu4e-end-region-misc))
 
 
 
