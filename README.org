@@ -52,8 +52,7 @@ The bindings that differ from normal mu4e bindings are listed below:
 | Skip duplicates                 | zd        |             |
 | Show log                        | gl        |             |
 | Select other view               | gv        |             |
-| Save attachement                | p         |             |
-| Save multiple attachments       | P         |             |
+| Save attachement(s)             | p         | P           |
 | Go to url                       | gx        |             |
 | Fetch url                       | gX        |             |
 
