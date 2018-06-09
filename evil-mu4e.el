@@ -293,7 +293,8 @@ is already done earlier."
     (add-hook 'mu4e-main-mode-hook 'evil-mu4e-update-main-view))
 
 ;; Evil-mu4e is only needed if mu4e is loaded.
-(eval-after-load "mu4e" '(evil-mu4e-init))
+(with-eval-after-load 'mu4e
+  (evil-mu4e-init))
 
 (provide 'evil-mu4e)
 ;;; evil-mu4e.el ends here
