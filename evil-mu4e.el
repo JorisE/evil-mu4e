@@ -189,6 +189,7 @@
     (,evil-mu4e-state mu4e-view-mode-map "gl"              mu4e-show-log)
     (,evil-mu4e-state mu4e-view-mode-map "s"               mu4e-view-search-edit)
     (,evil-mu4e-state mu4e-view-mode-map "|"               mu4e-view-pipe)
+    (,evil-mu4e-state mu4e-view-mode-map "."               mu4e-view-raw-message)
     (,evil-mu4e-state mu4e-view-mode-map ,(kbd "C--")      mu4e-headers-split-view-shrink)
     (,evil-mu4e-state mu4e-view-mode-map ,(kbd "C-+")      mu4e-headers-split-view-grow)
     (,evil-mu4e-state mu4e-view-mode-map "T"               (lambda ()
