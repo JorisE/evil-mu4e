@@ -109,6 +109,7 @@
     (,evil-mu4e-state mu4e-main-mode-map "A"               mu4e-about)
     (,evil-mu4e-state mu4e-main-mode-map "f"               smtpmail-send-queued-mail)
     (,evil-mu4e-state mu4e-main-mode-map "m"               mu4e~main-toggle-mail-sending-mode)
+    (,evil-mu4e-state mu4e-main-mode-map "s"               mu4e-headers-search)
     (,evil-mu4e-state mu4e-main-mode-map "q"               mu4e-quit)
 
     (,evil-mu4e-state mu4e-headers-mode-map "q"            mu4e~headers-quit-buffer)
