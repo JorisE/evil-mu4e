@@ -1,3 +1,6 @@
+* DEPRECATION WARNING 
+evil-mu4e has been merged into evil-collection. See: https://github.com/emacs-evil/evil-collection.
+
 * evil-mu4e.el
 This package configures keybindings for mu4e that make sense for Evil users.
 
